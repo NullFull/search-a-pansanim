@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: google/cloud-sdk:slim
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: import data
+          command: |
+            python3 -m venv venv
+            . ./venv/bin/activate
+            python manage.py import_data
+      - run:
+          name: deploy
+          command: |
+            echo $GCLOUD_KEY > /tmp/.gcloud-key
+            gcloud auth activate-service-account --key-file=/tmp/.gcloud-key
+            gcloud config set project anijung
+            gcloud -q app deploy app.yaml
