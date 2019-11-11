@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+import json
 import os
 
 MODE = os.environ.get('MODE', 'develop')
@@ -125,4 +125,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #
-GDRIVE_KEY = os.environ.get('GDRIVE_KEY')
+GDRIVE_KEY = json.loads(os.environ.get('GDRIVE_KEY'))
