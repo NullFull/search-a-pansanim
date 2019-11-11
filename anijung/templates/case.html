@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+
+{% block additional_header %}
+<style>
+    .case {
+        width: 360px;
+        margin: 0 auto;
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
+<div class="case">
+    <h1>판-결</h1>
+    <div>
+        <h2>사건</h2>
+        <h3>{{ case.title }}</h3>
+    </div>
+    <div>
+        <h2>판결</h2>
+        <ul>
+            {% for decision in case.decisions.all %}
+            <li>
+                <div>
+                    <h3>{{ decisions.round }}</h3>
+                    <dl>
+                        <dt>판결 번호</dt>
+                        <dd>{{ decision.no }}</dd>
+
+                        <dt>법원</dt>
+                        <dd>{{ decision.place }}</dd>
+
+                        <dt>판결</dt>
+                        <dd>{{ decision.result }}</dd>
+
+                        <dt>판사</dt>
+                        <dd><a href="{% url 'judge' decision.judge.id %}">{{ decision.judge.name }}</a></dd>
+                    </dl>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+
+{% block additional_header %}
+<style>
+    .judge {
+        width: 360px;
+        margin: 0 auto;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="judge">
+    <h1>판-사</h1>
+    <div>
+        <h2>{{ judge.name }}</h2>
+    </div>
+    <div>
+        <h3>소속</h3>
+        <ul>
+            <li>{{ judge.company.name }} {{ judge.place }}</li>
+        </ul>
+    </div>
+    <div>
+        <h3>판결들</h3>
+        <ul>
+            {% for decision in judge.decisions.all %}
+            <li>
+                <div>
+                    <p><a href="{% url 'case' decision.case.id %}">{{ decision.case.title }}</a></p>
+                    <p>{{ decision.round }} - {{ decision.result }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

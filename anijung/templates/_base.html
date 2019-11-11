@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .nav .title {
+            text-align: center;
+        }
+    </style>
+    {% block additional_header %}
+    {% endblock %}
+</head>
+<body>
+    <div class="nav">
+        <h1 class="title">이건 아니정...</h1>
+    </div>
+    <div class="body">
+    {% block body %}
+    {% endblock %}
+    </div>
+</body>
+</html>
