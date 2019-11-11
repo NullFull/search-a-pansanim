@@ -7,6 +7,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: setup
+          command: |
+            apt-get install python3-venv
+      - run:
           name: import data
           command: |
             python3 -m venv venv
