@@ -125,4 +125,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #
-GDRIVE_KEY = json.loads(os.environ.get('GDRIVE_KEY'))
+GDRIVE_KEY = json.loads(os.environ.get('GDRIVE_KEY', '{}'))
