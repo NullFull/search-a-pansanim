@@ -4,8 +4,8 @@ from anijung.models import Judge, Case
 
 
 def index(request):
-    judges = Judge.objects.all()[:5]
-    cases = Case.objects.all()[:5]
+    judges = Judge.objects.all()[:21]
+    cases = Case.objects.all()[:21]
 
     return render(request, 'index.html', dict(
         judges=judges,
