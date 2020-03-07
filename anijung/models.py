@@ -26,3 +26,10 @@ class Decision(m.Model):
     source = m.URLField(null=True)
     judge = m.ForeignKey(Judge, related_name='decisions', on_delete=m.CASCADE, null=True)  # TODO : 여러 판사 지원
     # judges = m.ManyToManyField(Judge, related_name='decisions')
+
+
+class Quote(m.Model):
+    # case = m.ForeignKey(Case, on_delete=m.CASCADE, null=True, blank=True)
+    decision = m.ForeignKey(Decision, on_delete=m.CASCADE, null=True, blank=True)
+    quote = m.CharField(max_length=300)
+    source = m.URLField(null=True, blank=True)

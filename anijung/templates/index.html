@@ -2,24 +2,97 @@
 
 {% block additional_header %}
 <style>
+    body {
+        font-family: "Noto Sans CJK KR", sans-serif;
+    }
+    li {
+        list-style: none;
+    }
+    a {
+        color: inherit;
+    }
+
     .featured {
-        display: flex;
-        justify-content: center;
+        max-width: 600px;
+        padding: 20px;
+        margin: 0 auto;
+    }
+    .featured-quotes {
+
+    }
+    .featured-quotes .quote {
+        padding: 10px;
+    }
+    .featured-quotes .quote a {
+        text-decoration: none;
+    }
+    .featured-quotes .quote .title {
+        margin: 0;
+        padding: 10px;
+        font-size: 1.0rem;
+    }
+    .featured-quotes .quote .case {
+        margin: 0;
+        padding: 0;
+        text-align: right;
+        font-size: 0.9rem;
+        text-decoration: underline;
+    }
+
+    .featured-cases .case .title {
+        font-size: 1.0rem;
+    }
+    .featured-cases .case dl {
+
+    }
+    .featured-cases .case dl dt {
+        width: 60px;
+        clear: both;
+    }
+    .featured-cases .case dl dd {
+        
     }
 </style>
 {% endblock %}
 
 {% block body %}
 <div class="featured">
-    <div class="featured-case">
-        <h3>주요 사건</h3>
+    <div class="featured-quotes">
         <ul>
-            {% for case in cases %}
-            <li><a href="{% url 'case' case.id %}">{{ case.title }}</a></li>
+            {% for quote in quotes %}
+            <li>
+                <div class="quote">
+                    <a href="{% url 'case' quote.decision.case.id %}">
+                        <h3 class="title">{{ quote.quote }}</h3>
+                        <p class="case">- {{ quote.decision.case.title }}</p>
+                    </a>
+                </div>
+            </li>
             {% endfor %}
         </ul>
     </div>
-    <div class="featured-judge">
+
+    <div class="featured-cases">
+        <h3>주요 사건</h3>
+        <dt>
+            {% for case in cases %}
+            <li>
+                <div class="case">
+                    <a href="{% url 'case' case.id %}">
+                        <h3 class="title">{{ case.title }}</h3>
+                        <dl>
+                            {% for decision in case.decisions.all %}
+                                <dt>{{ decision.round }}</dt>
+                                <dd>{{ decision.result }}</dd>
+                            {% endfor %}
+                        </dl>
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="featured-judges">
         <h3>주요 판사</h3>
         <ul>
             {% for judge in judges %}

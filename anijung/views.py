@@ -1,15 +1,17 @@
 from django.shortcuts import render
 
-from anijung.models import Judge, Case
+from anijung.models import Judge, Case, Quote
 
 
 def index(request):
-    judges = Judge.objects.all()
+    judges = Judge.objects.exclude(name='?')
     cases = Case.objects.all()
+    quotes = Quote.objects.all()
 
     return render(request, 'index.html', dict(
         judges=judges,
         cases=cases,
+        quotes=quotes,
     ))
 
 

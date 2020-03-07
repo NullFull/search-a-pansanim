@@ -3,7 +3,7 @@ from django.core.management import BaseCommand
 from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 
-from anijung.models import Judge, Company, Case, Decision
+from anijung.models import Judge, Company, Case, Decision, Quote
 
 
 class Command(BaseCommand):
@@ -76,9 +76,26 @@ class Command(BaseCommand):
             d.case = case
             d.judge = judge
             d.no = row[2]
-            d.court = row[3]
-            d.place = row[4]
-            d.round = row[5]
-            d.result = row[6]
-            d.source = row[7]
+            d.court = row[4]
+            d.place = row[5]
+            d.round = row[6]
+            d.result = row[7]
+            d.source = row[8]
             d.save()
+
+        quote_sheet = ws.worksheet('어록')
+        for row in quote_sheet.get_all_values()[1:]:
+            print(row)
+            quote_id = row[0]
+            decision_id = row[1].strip()
+
+            if not decision_id or decision_id == '?':
+                continue
+
+            decision = Decision.objects.get(id=decision_id)
+
+            quote, _ = Quote.objects.get_or_create(id=quote_id)
+            quote.decision = decision
+            quote.quote = row[4]
+            quote.source = row[5]
+            quote.save()
