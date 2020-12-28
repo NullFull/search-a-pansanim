@@ -1,0 +1,1 @@
+web: gunicorn anijung.wsgi
