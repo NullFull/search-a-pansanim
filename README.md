@@ -2,7 +2,7 @@
 사건 판례 정보 모음. (설명 추가 필요) 
 
 ### 간단 아키텍쳐
-- Python 3.10.0 / Django 4.0
+- Python 3.10 / Django 4.0
 - Django Admin 으로 데이터 입력
 - DB : Heroku postgreSQL
 - CI/CD : Heroku Sentry 
