@@ -24,4 +24,4 @@ class JudgeAdmin(NestedModelAdmin):
 
 admin.site.register(Case, CaseAdmin)
 admin.site.register(Judge, JudgeAdmin)
-# admin.site.register(Quote)
+admin.site.register(Quote)
