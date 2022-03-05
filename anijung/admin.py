@@ -1,6 +1,6 @@
 from django.contrib import admin
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin
-from .models import Case, Judge, Decision, Quote
+from .models import Case, Judge, Decision, Quote, Company
 
 
 class QuoteInline(NestedStackedInline):
@@ -25,3 +25,4 @@ class JudgeAdmin(NestedModelAdmin):
 admin.site.register(Case, CaseAdmin)
 admin.site.register(Judge, JudgeAdmin)
 admin.site.register(Quote)
+admin.site.register(Company)
