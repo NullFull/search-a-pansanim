@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "anijung/wsgi.py",
+      "src": "wsgi.py",
       "use": "@vercel/python"
     },
     {
@@ -17,7 +17,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "anijung/wsgi.py"
+      "dest": "main.py"
     }
   ]
 }
