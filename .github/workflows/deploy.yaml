@@ -29,7 +29,11 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Download database
-        run: wget -O db.sqlite3 ${{ secrets.DB_FILE_URL }}
+        env:
+          DB_FILE_URL: ${{ secrets.DB_FILE_URL }}
+        run: wget -O db.sqlite3 $DB_FILE_URL
 
       - name: Deploy to Vercel
-        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: vercel --token $VERCEL_TOKEN --prod
